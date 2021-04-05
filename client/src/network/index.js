@@ -132,6 +132,8 @@ export const buyCoin = async (coinId, numberOfCoins) => {
 
 export const sellCoin = async (coinId, numberOfCoins) => {
   const token = await getToken();
+  console.log(`coinId ${coinId}`);
+  console.log(`number of coins ${numberOfCoins}`);
   console.log(token);
   if (!token)
     return {

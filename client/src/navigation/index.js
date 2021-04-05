@@ -46,6 +46,8 @@ const navOptions = {
 };
 
 function TradeScreenNavigator() {
+  const AuthContext = useAuth();
+  const { isAuthenticated } = AuthContext;
   return (
     <ScreenStack.Navigator>
       <ScreenStack.Screen
@@ -63,20 +65,7 @@ function TradeScreenNavigator() {
           ...navOptions,
         }}
       />
-      <ScreenStack.Screen
-        name="Buy"
-        component={Buy}
-        options={{
-          ...navOptions,
-        }}
-      />
-      <ScreenStack.Screen
-        name="Sell"
-        component={Sell}
-        options={{
-          ...navOptions,
-        }}
-      />
+
       <ScreenStack.Screen
         name="Search"
         component={Search}
@@ -84,14 +73,31 @@ function TradeScreenNavigator() {
           ...navOptions,
         }}
       />
-
-      <ScreenStack.Screen
-        name="Confirmation"
-        component={Confirmation}
-        options={{
-          ...navOptions,
-        }}
-      />
+      {isAuthenticated ? (
+        <>
+          <ScreenStack.Screen
+            name="Buy"
+            component={Buy}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Sell"
+            component={Sell}
+            options={{
+              ...navOptions,
+            }}
+          />
+          <ScreenStack.Screen
+            name="Confirmation"
+            component={Confirmation}
+            options={{
+              ...navOptions,
+            }}
+          />
+        </>
+      ) : null}
     </ScreenStack.Navigator>
   );
 }

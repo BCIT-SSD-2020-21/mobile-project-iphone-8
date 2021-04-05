@@ -10,7 +10,7 @@ export default function SignoutCtrl({ navigation }) {
   const handleSignout = async () => {
     try {
       const result = await Auth.signOut();
-      console.log(result);
+      navigation.navigate("Index");
       setUserData(null);
     } catch (error) {
       console.log(error);
