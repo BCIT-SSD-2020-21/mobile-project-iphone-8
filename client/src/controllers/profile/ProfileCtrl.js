@@ -3,7 +3,7 @@ import Profile from "../../components/profile/Profile";
 import { useAuth } from "../../context/AuthContext";
 import { getMarkets } from "../../network";
 
-export default function ProfileCtrl() {
+export default function ProfileCtrl({navigation}) {
   const authContext = useAuth();
   const [markets, setMarkets] = useState([]);
   const maxMarkets = 5;
@@ -22,5 +22,5 @@ export default function ProfileCtrl() {
 
   const { profileData } = authContext;
 
-  return <Profile user={profileData} markets={markets}/>;
+  return <Profile user={profileData} markets={markets} buyFunction={() => {navigation.navigate('Index')}}/>;
 }

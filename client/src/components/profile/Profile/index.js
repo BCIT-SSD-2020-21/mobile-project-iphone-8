@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import CardView from '../CardView';
 import CurrencyList from '../CurrencyList';
 
-export default function Profile({ user, markets }) {
+export default function Profile({ user, markets, buyFunction }) {
   if (!user) {
     return <View style={styles.container}>
       <Text>Loading...</Text>
@@ -31,7 +31,16 @@ export default function Profile({ user, markets }) {
         topText={`Wallet: ${moneyFormatter.format(cash)}`}
         width={200}
       />
-      <Text style={{color:'white', paddingTop: 50, fontSize: 23, paddingBottom: 5, fontWeight: 'bold'}}>Portfolio</Text>
+      <View style={{ paddingTop: 50, paddingBottom: 5, flexDirection: 'row', marginHorizontal: 20 }}>
+        <View style={{flex: 1}}>
+          <Text style={styles.text}>Portfolio</Text>
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => {buyFunction()}}>
+            <Text style={styles.text}>Add <Icon size={23} color='white' name='plus-circle'></Icon></Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <View>
         <CurrencyList markets={markets} />
       </View>
@@ -46,4 +55,9 @@ const styles = StyleSheet.create({
     paddingTop: '10%',
     alignItems: 'center',
   },
+  text: {
+    color: 'white',
+    fontSize: 23,
+    fontWeight: 'bold'
+  }
 });
