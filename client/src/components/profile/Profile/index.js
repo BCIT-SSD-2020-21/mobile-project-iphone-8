@@ -31,7 +31,8 @@ export default function Profile({ user, markets }) {
         topText={`Wallet: ${moneyFormatter.format(cash)}`}
         width={200}
       />
-      <View style={{ paddingTop: '15%' }}>
+      <Text style={{color:'white', paddingTop: 50, fontSize: 23, paddingBottom: 5, fontWeight: 'bold'}}>Portfolio</Text>
+      <View>
         <CurrencyList markets={markets} />
       </View>
     </View>
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: '#1A1A1A',
-    paddingTop: '15%',
+    paddingTop: '10%',
     alignItems: 'center',
   },
 });
