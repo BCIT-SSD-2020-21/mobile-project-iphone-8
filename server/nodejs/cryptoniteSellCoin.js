@@ -9,12 +9,16 @@ exports.handler = async (event) => {
     return proxyResponse("User not authorized", 400);
   }
 
+  const coinId = event.pathParameters?.coin;
+
   if (!coinId) {
     return proxyResponse("Coin id not provided", 400);
   }
+
   if (!event.body) {
     return proxyResponse("Empty body", 400);
   }
+
   let messageData;
   try {
     messageData = JSON.parse(event.body);
@@ -22,8 +26,12 @@ exports.handler = async (event) => {
     return proxyResponse("Improper body", 400);
   }
 
-  const numberOfCoins = event.numberOfCoins;
-  const coinId = event.pathParameters.coin;
+  const numberOfCoins = messageData.numberOfCoins;
+
+  if (!numberOfCoins){
+    return proxyReponse("Number of coins not provided", 400);
+  }
+
   const marketValue = await getPrice(coinId);
   const price = marketValue.data[coinId].usd;
   const db = await connectToDatabase();
@@ -64,7 +72,7 @@ exports.handler = async (event) => {
       const update = user.updateOne(
         { _id: sub },
         {
-          $inc: { cash: purchaseValue, bookValue: -purchaseValue },
+          $inc: { cash: purchaseValue },
           $push: {
             transactions: {
               coinId: coinId,

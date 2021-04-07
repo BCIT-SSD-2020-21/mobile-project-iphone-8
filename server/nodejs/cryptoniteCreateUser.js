@@ -1,9 +1,9 @@
 const connectToDatabase = require('/opt/nodejs/database');
 
 exports.handler = async (event, context) => {
-  console.log(`Attempted to create user with ${JSON.stringify(event)}`)
+  //console.log(`Attempted to create user with ${JSON.stringify(event)}`)
   const DEFAULT_CASH = 50000;
-  if (!event.request.userAttributes.sub){
+  if (!event.request?.userAttributes?.sub){
     context.done("Improper user object", event);
     return;
   }

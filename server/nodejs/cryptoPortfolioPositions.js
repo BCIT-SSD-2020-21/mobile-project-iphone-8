@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   // get the current price
   const getCurrentPrice = async (id) => {
     const marketValue = await getPrice(id);
-    const price = marketValue.data[id].usd;
+    const price = marketValue?.data[id]?.usd;
     return price
   }
 
@@ -55,7 +55,10 @@ exports.handler = async (event) => {
     const cash = await user.find({ _id: sub }, { cash: 1, _id: 0 }).toArray()
     userCash = cash[0].cash
 
-    const currentValueOfCoins = positions.reduce((acc, val) => val.totalCurrValue + acc.totalCurrValue);
+    let currentValueOfCoins = 0;
+    for (let i = 0; i < positions.length; i++) {
+      currentValueOfCoins += positions[i].totalCurrValue
+    }
     const portfolioValue = userCash + currentValueOfCoins
 
     return proxyResponse({ positions, portfolioValue });
