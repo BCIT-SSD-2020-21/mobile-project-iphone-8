@@ -27,6 +27,7 @@ import Confirmation from "../screens/Trade/Confirmation";
 
 // Screens - COMMON
 import Search from "../screens/Common/Search";
+import WatchList from "../screens/Common/WatchList";
 
 // Navigation stacks
 const BottomTab = createMaterialBottomTabNavigator();
@@ -184,6 +185,22 @@ function SignoutScreenNavigator() {
   );
 }
 
+function WatchListNavigator() {
+  return (
+    <ScreenStack.Navigator>
+      <ScreenStack.Screen
+        name="WatchList"
+        component={WatchList}
+        options={{
+          headerTitle: "WatchList",
+          ...navOptions,
+        }}
+      />
+    
+    </ScreenStack.Navigator>
+  );
+}
+
 export default function Index() {
   const AuthContext = useAuth();
   const { isAuthenticated } = AuthContext;
@@ -201,6 +218,17 @@ export default function Index() {
       <BottomTab.Screen
         name="Trade"
         component={TradeScreenNavigator}
+        options={{
+          ...navOptions,
+          tabBarIcon: ({ focused }) => (
+            <>{focused ? <GraphActive /> : <GraphDefault />}</>
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="WatchList"
+        component={WatchListNavigator}
         options={{
           ...navOptions,
           tabBarIcon: ({ focused }) => (
