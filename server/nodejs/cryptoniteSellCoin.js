@@ -46,7 +46,7 @@ exports.handler = async (event) => {
       ])
       .toArray();
 
-    if (result[0] === []) {
+    if (result.length === 0 || result[0] === undefined) {
       return proxyResponse("User does not hold the specified coin", 400);
     }
 
