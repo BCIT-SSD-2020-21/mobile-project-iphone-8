@@ -11,7 +11,8 @@ export default function WatchList({
   
   return (
     <FlatList
-      keyExtractor={(company) => company.id}
+    style={styles.flatList}
+      keyExtractor={(coinData) => coinData.id}
       data={arrayMap}
       renderItem={({item}) => {
       return (
@@ -21,3 +22,17 @@ export default function WatchList({
   />
   )
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  flatList: {
+    backgroundColor: "#1a1a1a",
+    height: "100%",
+  },
+});
