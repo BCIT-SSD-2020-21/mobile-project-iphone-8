@@ -5,16 +5,15 @@ export default function WatchListItem({coinData}){
   return(
     <View style={styles.container}>
       <View style={styles.logo}>
-      <Image source={{ uri: coinData.image.small }} style={styles.image} />
-      <Text style={styles.text}>{coinData.name}</Text>
-
+        <Image source={{ uri: coinData.image.small }} style={styles.image} />
+        <Text style={styles.text}>{coinData.name}</Text>
       </View>
     
       <View>
-      <Text style={styles.right}>Rank</Text>
-      <Text style={styles.right}>{coinData.coingecko_rank}</Text>
+        <Text style={styles.right}>Rank</Text>
+        <Text style={styles.right}>{coinData.coingecko_rank}</Text>
+        
       </View>
-     
     </View>
     
   )

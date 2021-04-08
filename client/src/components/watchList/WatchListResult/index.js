@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View,FlatList, } from "react-native";
 import { useState } from "react";
-import WatchListItem from "./WatchListItem"
+import WatchListItem from "../WatchListItem"
 
 
-export default function WatchList({
+export default function WatchListResult({
   //PROPERTIES
   arrayMap
 }) {

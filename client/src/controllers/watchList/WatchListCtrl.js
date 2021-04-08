@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import WatchList from "../../components/watchList"
+import WatchListResult from "../../components/watchList/WatchListResult"
 import { getCoin } from "../../network"
 
 export default function WatchListCtrl() {
@@ -12,6 +12,8 @@ export default function WatchListCtrl() {
 
   const getWatchList = async () => {
     let watchListData = await AsyncStorage.getItem("watchListData");
+    if (!watchListData && watchListData.length < 1)
+    watchListData = [["bitcoin"]];
     watchListData = JSON.parse(watchListData);
     setWatchListData(watchListData);
   };
@@ -33,7 +35,7 @@ export default function WatchListCtrl() {
 
   return (
     <View>
-      <WatchList
+      <WatchListResult
         arrayMap = {arrayMap}/>
     </View>
   )
