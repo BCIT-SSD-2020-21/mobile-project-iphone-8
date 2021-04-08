@@ -5,7 +5,7 @@ export default function WatchListItem({coinData}){
   return(
     <View style={styles.container}>
       <View style={styles.logo}>
-        <Image source={{ uri: coinData.image.small }} style={styles.image} />
+        {/* <Image source={{ uri: coinData.image.small }} style={styles.image} /> */}
         <Text style={styles.text}>{coinData.name}</Text>
       </View>
     
